@@ -4,17 +4,39 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("ادخل اسمك:");
-        string name = Console.ReadLine();
+        Console.WriteLine("=== My First C# App ===");
 
-        Console.WriteLine("ادخل عمرك:");
-        int age = int.Parse(Console.ReadLine());
+        while (true)
+        {
+            Console.Write("Enter your name: ");
+            string name = Console.ReadLine();
 
-        Console.WriteLine($"مرحبا {name}، عمرك {age} سنة");
+            Console.Write("Enter your age: ");
+            bool isValidAge = int.TryParse(Console.ReadLine(), out int age);
 
-        if (age >= 18)
-            Console.WriteLine("أنت بالغ ✅");
-        else
-            Console.WriteLine("أنت قاصر ❌");
+            if (!isValidAge)
+            {
+                Console.WriteLine("❌ Age must be a number.");
+                continue;
+            }
+
+            if (age < 18)
+            {
+                Console.WriteLine($"Hello {name}, you are under 18.");
+            }
+            else
+            {
+                Console.WriteLine($"Welcome {name}, you are an adult.");
+            }
+
+            Console.Write("Do you want to try again? (y/n): ");
+            string choice = Console.ReadLine().ToLower();
+
+            if (choice != "y")
+            {
+                Console.WriteLine("Goodbye 👋");
+                break;
+            }
+        }
     }
 }
